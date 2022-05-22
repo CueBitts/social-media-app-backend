@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors');
 const morgan = require('morgan');
-const Person = require('./models/Person')
+const User = require('./models/User')
 // const Post = require('./models/Post')
 // const Comment = require('./models/Comment')
 
@@ -19,17 +19,17 @@ app.get('/', (req, res) => {
     res.send('hello world!');
 });
 
-app.get('/people', async (req, res) => {
+app.get('/users', async (req, res) => {
     try {
-        const people = (await Person.find({}))
+        const users = (await User.find({}))
     } catch (error) {
         res.status(400).json(error);
     }
 })
 
-app.post("/people", async (req, res) => {
+app.post("/users", async (req, res) => {
     try {
-      res.json(await Person.create(req.body));
+      res.json(await User.create(req.body));
     } catch (error) {
       res.status(400).json(error);
     }
