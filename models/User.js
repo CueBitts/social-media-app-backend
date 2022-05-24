@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     following: {
-        type: [User],
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
         required: true
     }
 })

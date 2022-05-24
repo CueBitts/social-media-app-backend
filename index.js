@@ -27,7 +27,7 @@ app.get('/users', async (req, res) => {
     }
 })
 
-app.post("/users", async (req, res) => {
+app.post('/users', async (req, res) => {
     try {
       res.json(await User.create(req.body));
     } catch (error) {
