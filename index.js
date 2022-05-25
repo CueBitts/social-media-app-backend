@@ -1,14 +1,14 @@
 const express = require('express')
 const cors = require('cors');
-const morgan = require('morgan');
-const userController = require('./controllers/newUser')
-const postController = require('./controllers/newPost')
+// const morgan = require('morgan');
+const userController = require('./controllers/users')
+const postController = require('./controllers/posts')
 
 const app = express()
 
 app.use(express.static(__dirname + '/' + 'public'))
 app.use(cors()) 
-app.use(morgan('dev')) 
+// app.use(morgan('dev')) 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
