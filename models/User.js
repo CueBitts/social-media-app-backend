@@ -1,16 +1,7 @@
 const mongoose = require('../db/connection')
 
 const userSchema = new mongoose.Schema({
-    // username: { 
-    //     type: String,
-    //     required: true
-    // },
-    // password: {
-    //     type: String,
-    //     required: true
-    // },
-    // profilePic: String,
-    // following: Array
+ 
 
     username: {
         type: String,
@@ -18,15 +9,15 @@ const userSchema = new mongoose.Schema({
     },
     profilePic: {
         type: String,
-        required: true
+        default: "https://st4.depositphotos.com/1000507/24489/v/450/depositphotos_244890858-stock-illustration-user-profile-picture-isolate-background.jpg"
     },
     password: {
         type: String,
         required: true
     },
     following: {
-        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-        required: true
+        type: [{id: {type: String}}],
+        default: []
     }
 })
 

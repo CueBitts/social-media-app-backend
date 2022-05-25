@@ -2,23 +2,14 @@ const mongoose = require('../db/connection')
 const User = require('./User')
 
 const postSchema = new mongoose.Schema({
-    // username: { 
-    //     type: Object,
-    //     required: true
-    // },
-    // time: String,
-    // text: String,
-    // image: String,
-    // likes: Number,
-    // following: Array[Object]
 
-    user: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'User',
+    user_id: {
+        type: String,
         required: true
     },
     time: {
-        type: Number,
-        required: true
+        type: String,
+        default: Date
     },
     text: {
         type: String,
@@ -26,16 +17,28 @@ const postSchema = new mongoose.Schema({
     },
     pic: {
         type: String,
-        required: false
+        required: true
     },
     likes: {
         type: Number,
-        required: true
+        default: 0
     },
     comments: {
-        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
-        required: true
+        type: [
+            {
+                text: {
+                    type: String,
+                    required: true
+                },
+    
+                comment_id: {
+                    type: String,
+                    required: true
+                }
+            }],
+        default: []
     }
+
 
 })
 
