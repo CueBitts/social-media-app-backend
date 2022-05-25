@@ -1,9 +1,8 @@
 const mongoose = require('../db/connection')
-const User = require('./User')
 
 const postSchema = new mongoose.Schema({
 
-    user_id: {
+    userId: {
         type: String,
         required: true
     },
@@ -21,25 +20,24 @@ const postSchema = new mongoose.Schema({
     },
     likes: {
         type: Number,
+        required: true,
         default: 0
     },
     comments: {
         type: [
             {
-                text: {
+                userId: {
                     type: String,
                     required: true
                 },
-    
-                comment_id: {
+                text: {
                     type: String,
                     required: true
                 }
             }],
+        required: true,
         default: []
     }
-
-
 })
 
 const Post = mongoose.model("Post", postSchema)

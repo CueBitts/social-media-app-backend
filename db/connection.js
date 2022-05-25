@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
 
-const mongoURI = 'mongodb+srv://egorkrylov:UjZqOoYmvz6ERdyr@cluster0.b32mt.mongodb.net/Project3?retryWrites=true&w=majority'
+const mongoURI = 'mongodb+srv://qhogan:qhogan@cluster0.5ocel.mongodb.net/project-3'
 //   process.env.NODE_ENV === 'production'
 //     ?
 //       process.env.DB_URL
@@ -12,9 +12,7 @@ const mongoURI = 'mongodb+srv://egorkrylov:UjZqOoYmvz6ERdyr@cluster0.b32mt.mongo
 mongoose
  .connect(mongoURI, { 
   useNewUrlParser: true,
-  // useCreateIndex: true,
   useUnifiedTopology: true,
-  // useFindAndModify: false,
 })
 .then((conn) => {
 	console.log(`connected to mongodb on ${conn.connections[0].name} db`)
@@ -22,14 +20,5 @@ mongoose
 .catch(err => {
 	console.error(err)
 })
-
-// mongoose
-//     .connect(mongoURI)
-//     .then((instance) =>
-//         console.log(`Connected to DB ${instance.connections[0].name}`)
-//     )
-//     .catch((error) =>
-//         console.log('Connection failed', error)
-//     )
 
 module.exports = mongoose
