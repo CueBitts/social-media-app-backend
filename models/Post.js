@@ -7,8 +7,8 @@ const postSchema = new mongoose.Schema({
         required: true
     },
     time: {
-        type: String,
-        default: Date
+        type: Date,
+        default: Date.now
     },
     text: {
         type: String,
@@ -38,6 +38,9 @@ const postSchema = new mongoose.Schema({
         required: true,
         default: []
     }
+   
+},  {
+    timestamps: true
 })
 
 const Post = mongoose.model("Post", postSchema)

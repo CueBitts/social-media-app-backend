@@ -16,7 +16,12 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     following: {
-        type: [{userId: {type: String}}],
+        type: [
+            {
+                userId: {
+                    type: String,
+                    required: true
+                }}],
         required: true,
         default: []
     }
