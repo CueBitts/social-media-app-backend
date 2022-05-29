@@ -3,6 +3,7 @@ const User = require('../models/User')
 
 const router = express.Router()
 
+//create a user
 router.post('/', async (req, res) => {
   console.log('post:', req.body)
   try {
@@ -13,6 +14,8 @@ router.post('/', async (req, res) => {
     res.status(400).json(error)
   }
 })
+
+//show a user
 router.get('/', async (req, res) => {
   try {
       res.json(
@@ -23,30 +26,33 @@ router.get('/', async (req, res) => {
   }
 })
 
-// router.post('/signin', async (req, res) => {
-//   console.log('get:',req.body)
-//   try {
-//       res.json(
-//         await User.find({usename:req.body.username, password:req.body.password})
-//         )
-//         console.log('hello')
-//   } catch (error) {
-//       res.status(400).json(error)
-//   }
-// })
-
+//sign in 
 router.post('/signin', async (req, res) => {
   console.log('get:',req.body)
   try {
-      res.json(
-        await User.aggregate([{usename:req.body.username, password:req.body.password}])
-        )
-        console.log('hello')
+    const {username, password} =req.body;
+    if (!username || !password){
+      return res.status(400).json({error: 'Please try again'})
+    }
+    const theLogin = await User.findOne({username: username, password:password})
+    console.log(theLogin)
+    if (!theLogin){
+      res.status(400).json({error: "user sign in error"});
+    } else {
+
+      res.json({message: 'Sign in successful'});
+      // await (res.redirect('/'))
+    }
+      // res.json(
+      //   await User.find({usename:req.body.username, password:req.body.password})
+      //   )
+      //   console.log('hello')
   } catch (error) {
       res.status(400).json(error)
   }
 })
 
+//update a user
 router.put("/:id", async (req, res) => {
   try {
     res.json(
@@ -57,7 +63,7 @@ router.put("/:id", async (req, res) => {
   }
 })
   
-
+//delete user
 router.delete("/:id", async (req, res) => {
   try {
     res.json(
