@@ -28,11 +28,11 @@ const postSchema = new mongoose.Schema({
             {
                 userId: {
                     type: String,
-                    required: true
+                    required: false
                 },
                 text: {
                     type: String,
-                    required: true
+                    required: false
                 }
             }],
         required: true,

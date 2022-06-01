@@ -1,7 +1,8 @@
 const express = require('express')
+const router = express.Router()
+
 const Post = require('../models/Post')
 
-const router = express.Router()
 
 router.post('/', async (req, res) => {
   try {
@@ -27,6 +28,18 @@ router.put("/:id", async (req, res) => {
   try {
     res.json(
       await Post.findByIdAndUpdate(req.params.id, req.body)
+    )
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+
+router.post('/new-comment/:id', async (req, res) => {
+  console.log('post firing!')
+  
+  try {
+    res.json(
+      await Post.findByIdAndUpdate(req.params.id, {$push: {comments: req.body}})
     )
   } catch (error) {
     res.status(400).json(error)
