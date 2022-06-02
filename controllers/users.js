@@ -28,26 +28,11 @@ router.get('/', async (req, res) => {
 
 //sign in 
 router.post('/signin', async (req, res) => {
-  console.log('get:',req.body)
   try {
-    const {username, password} =req.body;
-    if (!username || !password){
-      return res.status(400).json({error: 'Please try again'})
-    }
-    const theLogin = await User.findOne({username: username, password:password})
-    console.log(theLogin)
-    if (!theLogin){
-      res.status(400).json({error: "user sign in error"});
-    } else {
-
-      res.json({message: 'Sign in successful'});
-      // await (res.redirect('/'))
-    }
-      // res.json(
-      //   await User.find({usename:req.body.username, password:req.body.password})
-      //   )
-      //   console.log('hello')
-  } catch (error) {
+    res.json(
+      await User.findOne({username: req.body.username, password: req.body.password})
+    )
+  } catch(error) {
       res.status(400).json(error)
   }
 })
