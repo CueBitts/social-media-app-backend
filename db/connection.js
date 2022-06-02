@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
 
-const mongoURI = 'mongodb+srv://qhogan:qhogan@cluster0.5ocel.mongodb.net/project-3'
-//   process.env.NODE_ENV === 'production'
-//     ?
-//       process.env.DB_URL
-//     :
-//       process.env.DEV_DB_URL
-// mongoose.Promise = Promise
+const mongoURI = 
+  process.env.NODE_ENV === 'production'
+    ?
+      process.env.DB_URL
+    :
+      process.env.DEV_DB_URL
+mongoose.Promise = Promise
 
 mongoose
  .connect(mongoURI, { 
