@@ -33,6 +33,30 @@ router.put("/:id", async (req, res) => {
   }
 })
 
+router.post('/like/:id', async (req, res) => {
+  console.log('like firing!')
+
+  try {
+    res.json(
+      await Post.findByIdAndUpdate(req.params.id, {$push: {likes: req.body}})
+    )
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+
+router.post('/unlike/:id', async (req, res) => {
+  console.log('unlike firing!')
+  
+  try {
+    res.json(
+      await Post.findByIdAndUpdate(req.params.id, {$pull: {likes: req.body}})
+    )
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+
 router.post('/new-comment/:id', async (req, res) => {
   console.log('post firing!')
   
